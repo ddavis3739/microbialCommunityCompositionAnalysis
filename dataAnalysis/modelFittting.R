@@ -97,6 +97,17 @@ for(i in c(6:42)){
 names(allShapTest) = names(envData[, c(6:42)])
 allShapTest[allShapTest < .05]
 
+# testing for variance differences 
+
+# rich; no sig difference
+leveneTest(envData$richness ~ envData$Season)
+
+# Shan; (F1, 42 = 8.58, p < 0.01)
+leveneTest(envData$shannon~ envData$Season)
+
+# Simp; (F1, 42 = 6.65, p < 0.05)
+leveneTest(envData$simpson ~ envData$Season)
+
 # richness model 
 
 x = glm(richness ~ Season * 

@@ -37,14 +37,17 @@ names(envData1)[c(12, 39)] = c('OM', 'VD')
 
 png('nMDS.png', width = 750, height = 500)
 
-ef = envfit(test, envData1[,c(9, 12, 39)], na.rm = TRUE)
+ef <- envfit(test, envData1[,c(9, 12, 39)], na.rm = TRUE)
 colvec = c('Green', 'Red')
-plot(test, display = "sites", type = 'n')
+
+plot(test, display = "sites", type = 'n', 
+     xlab = "NMDS axis 1", ylab = "NMDS axis 2")
 # draw polygon around sites for each season
-ordihull(test, groups = treat, draw="polygon", col="grey95", border = "grey25", label=F)
+ordihull(test, groups = treat, draw="polygon", col= c("white", "grey90"), 
+         border = "grey25", label=F)
 # add in sites as dots 
-points(test, display="sites", pch=16,
-       col=c(rep("red", 22),rep("blue", 22)))
+points(test, display="sites", pch=16, cex = 1.25,
+       col = c(rep("red", 22), rep("blue", 22)))
 plot(ef, p.max = .1, col = 'black', cex = 1.75)
 
 dev.off()
